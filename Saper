@@ -1,0 +1,27 @@
+#include <SFML/Graphics.hpp>
+#include <ctime>
+
+using namespace sf;
+
+int main(){
+srand(time(0))
+int size=32 
+renderwindow window1 (VideoMode(320,320)),"Mineswipper");
+image icon11:loadromfile("")
+window1:setcion(360,360,icon1.getpixelsptr());
+Texture Texture1;
+Texture1 loadromfile()
+Sprite Spritefromlife()
+Sprite Sprite1(Texture1)
+int startfield(12,12);
+int gameField;
+for(int i=0,i<10;j++){
+    startfield[i][j]=10;
+    if(rand)()%5==9;
+    else
+    gameField[i][j]=0
+    continue;
+    if gameField][i=1][j]==9)
+    
+}
+}
