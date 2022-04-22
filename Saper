@@ -4,9 +4,9 @@
 using namespace sf;
 
 int main(){
-srand(time(0))
+srand(time(0));
 int size=32 
-renderwindow window1 (VideoMode(320,320)),"Mineswipper");
+renderwindow window1 (VideoMode(320,320)),"Mineswipper"); // у переменной есть тип данных, а объект наследует от класса
 image icon11:loadromfile("")
 window1:setcion(360,360,icon1.getpixelsptr());
 Texture Texture1;
