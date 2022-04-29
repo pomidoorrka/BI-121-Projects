@@ -23,10 +23,33 @@ int main{
       for(i=0; i<2000; i++){
         for(j = 0; j<poweralpha; j++){
           if (message[i]==alphabet[j]){
-          
+          message [i] = alphabet[(j + step) % 26];
+            break;
           }
         }
       }
+      wcout<< L"зашифрованное сообщение " << message << endl;   // буковка L литерал из аски в юникод фигачим
+      break;
+    case 2:
+      cout << "Введи сообщение" << endl;
+      cin.ignore();
+      wcin.getline(message, 2000);
+      cout << "Введи шаг" << endl;
+      cin >> step;
+      for(i=0; i<2000; i++){
+        for(j = 0; j<poweralpha; j++){
+          if (message[i]==alphabet[j]){
+            if ((j - step) < 0){
+              j+=poweralphaж // новое значение j = старое + павер альфа
+              message [i] = alphabet[(j - step) % 26];
+            }
+            else
+            message [i] = alphabet[(j - step) % 26];
+            break;
+          }
+        }
+      }
+      wcout<< L"Расшифрованное сообщение " << message << endl;   // буковка L литерал из аски в юникод фигачим
       break;
   }
   system ("pause");
