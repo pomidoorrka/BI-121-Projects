@@ -1,27 +1,91 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
+#include <SFML/Audio.hpp>
 
 using namespace sf;
 
-int main(){
-srand(time(0));
-int size=32 
-renderwindow window1 (VideoMode(320,320)),"Mineswipper"); // у переменной есть тип данных, а объект наследует от класса
-image icon11:loadromfile("")
-window1:setcion(360,360,icon1.getpixelsptr());
-Texture Texture1;
-Texture1 loadromfile()
-Sprite Spritefromlife()
-Sprite Sprite1(Texture1)
-int startfield(12,12);
-int gameField;
-for(int i=0,i<10;j++){
-    startfield[i][j]=10;
-    if(rand)()%5==9;
-    else
-    gameField[i][j]=0
-    continue;
-    if gameField][i=1][j]==9)
-    
-}
+int main() {
+    srand(time(NULL));
+    int size = 32; //peremennaya(vsegda est tip dannih)
+    Texture box; //box - объект (Объект)
+    RenderWindow window1(VideoMode(320, 320), "MineSappers");//указываем размер окна
+    box.loadFromFile("C:/Users/pomiD/Desktop/projects for infa/additional files/imgonline-com-ua-Resize-GKPEnDHfR80ulYAi.jpg");
+    Sprite xbox(box); //спрайт на квадратик
+    Image icon; //Объявляем фавикон
+    icon.loadFromFile("C:/Users/pomiD/Desktop/projects for infa/additional files/pomidor.jpg");
+    window1.setIcon(900, 900, icon.getPixelsPtr()); //чтобы была растровая пикча
+    int startField[12][12]; //стартовое поле
+    int gameField[12][12]; //игровое поле(накладываются друг на друга)
+    bool gameover = false;
+    /*SoundBuffer Bobm_AV;
+    Bobm_AV.loadFromFile("тут путь взрыва (В нашем случае должно было быть открытие банки пива, ну не важно)");
+    Sound pivo(Bobm_AV);*/ // звуки
+    /*Texture over;
+    over.loadFromFile("картинка");
+    Sprite oversprite;//создаем объект Sprite(спрайт)
+    oversprite.setTexture(over);//передаём в него объект Texture (текстуры)
+    oversprite.setPosition(160, 160);//задаем начальные координаты появления спрайта
+    if (gameover == true) {
+        window1.clear();
+        window1.draw(oversprite);
+    }*/ // экран окончания
+    for (int i = 0; i < 10; i++)
+    for (int j = 0; j < 10; j++) {
+        startField[i][j] = 10; //чтобы стартовое поле заполнялось начальными нажимными плитками
+            if (rand() % 5 == 3)
+                gameField[i][j] = 9;
+            else
+                gameField[i][j] = 0;
+            }
+    for (int i = 0; i < 10; i++)
+        for (int j = 0; j < 10; j++) {
+            int bomb = 0; //ввели счетчик бомб который равен 0
+            if (gameField[i][j] == 9)
+                continue;
+            if (gameField[i + 1][j] == 9)
+                bomb++;
+            if (gameField[i][j + 1] == 9)
+                bomb++;
+            if (gameField[i + 1][j + 1] == 9)
+                bomb++;
+            if (gameField[i - 1][j - 1] == 9)
+                bomb++;
+            if (gameField[i - 1][j + 1] == 9)
+                bomb++;
+            if (gameField[i + 1][j - 1] == 9)
+                bomb++;
+            if (gameField[i - 1][j] == 9)
+                bomb++;
+            if (gameField[i][j - 1] == 9)
+                bomb++;
+            gameField[i][j] = bomb;
+        }
+    while (window1.isOpen()) {
+        Vector2i mouse = Mouse::getPosition(window1);//для того чтобы передавалась позиция мышки во время открытого окна игры
+        int x = mouse.x / size;
+        int y = mouse.y / size;
+        Event touch;
+            while (window1.pollEvent(touch)) {
+                if (touch.type == Event::MouseButtonPressed) {
+                if (touch.key.code == Mouse::Left)
+                    startField[x][y] = gameField[x][y];
+                else if (touch.key.code == Mouse::Right)
+                    startField[x][y] = 11;
+            }
+            if (touch.type == Event::Closed)
+                window1.close();
+    }
+        for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 10; j++) {
+                if (startField[x][y] == 9)
+                    startField[i][j] = gameField[i][j];
+                    gameover = true;
+                    /*pivo.play()*/
+                    xbox.setTextureRect(IntRect(startField[i][j] * size, 0, size, size));
+                    xbox.setPosition(i * size, j * size);
+                    window1.draw(xbox);
+
+    }
+window1.display();
+    }
 }
