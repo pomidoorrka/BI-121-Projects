@@ -40,7 +40,7 @@ int main{
         for(j = 0; j<poweralpha; j++){
           if (message[i]==alphabet[j]){
             if ((j - step) < 0){
-              j+=poweralphaж // новое значение j = старое + павер альфа
+              j+=poweralpha // новое значение j = старое + павер альфа
               message [i] = alphabet[(j - step) % 26];
             }
             else
