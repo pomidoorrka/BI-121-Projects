@@ -31,7 +31,7 @@ int main{
   hero_image.loafFromFile("хироэмаге ");
   hero_image.createMaskFromColor(Color(255, 255, 255));
   Texture HERO_TEXTURE;
-  HERO_TEXTURE.loadFromFile("текстурка марио");                       //тайл спрайт на спрайте на спрайте на спрайте
+  HERO_TEXTURE.loadFromFile(hero_image");                       //тайл спрайт на спрайте на спрайте на спрайте
   Sprite HERO_SPRITE(HERO_TEXTURE);
   HERO_SPRITE.serTextureRect(IntRect(0, 0, 64, 85));
   HERO_SPRITE.setPosition(0, 360);
@@ -42,5 +42,54 @@ int main{
   Music music1;
   music1.openFromFile("путь к музыке");
   music1.play;
-  
+  Clock clock;
+  float nowFrame = 0;                          
+  while (window1.isOpen()){
+    float time = clock.getElapsedTime().asMicroseconds();
+    clock.restart();
+    time = time / 1000;
+    Event  event;
+    while(window1.pollEvent(event)){
+      if (event.type == Event::Closed)
+        window1.close();
+    }
+    if (Keyboard::isKeyPressed(Keyboard::Right)){
+      HERO_SPRITE.setScale(1, 1);
+      nowFrame += 0.01 * time;               // nowFrame = nowFrame + (0,001 * time)
+      if(nowFrame > 4)
+        nowFrame -= 4;
+      HERO_SPRITE.setTextureRect(intrect(80*int(nowFrame), 0, 90, 85));
+      HERO_SPRITE.move(time * 0.1,0);
+    }
+    if (Keyboard::isKeyPressed(Keyboard::Left)){
+      HERO_SPRITE.setScale(-1, 1);
+      nowFrame += 0.01 * time;               // nowFrame = nowFrame + (0,001 * time)
+      if(nowFrame > 4)
+        nowFrame -= 4;
+      HERO_SPRITE.setTextureRect(intrect(80*int(nowFrame), 0, 90, 85));
+      HERO_SPRITE.move(time * -0.1,0);
+    }
+    if (Keyboard::isKeyPressed(Keyboard::Up)){
+      HERO_SPRITE.move(0, time * -0.1);
+      HERO_SPRITE.setTextureRext(intrect(418, 0, 85, 85));
+    }
+    window1.clear();
+    for (int i = 0; i < height ;i++)
+      for(int j = 0; j < width; j++){
+        if (map [i][j] == 's' or map [i][j] == ' '
+            map_sprite.setTextureRect(intRect(size * 4, 0, size, size));
+        if (map [i][j] == 'b' or map [i][j] == ' '
+            map_sprite.setTextureRect(intRect(size*2, 0, size, size));
+        if (map [i][j] == 'g' or map [i][j] == ' '
+            map_sprite.setTextureRect(intRect(0, 0, size, size));
+        if (map [i][j] == 'q' or map [i][j] == ' '
+            map_sprite.setTextureRect(intRect(size*3, 0, size, size));
+        if (map [i][j] == 'u' or map [i][j] == ' '
+            map_sprite.setTextureRect(intRect(size, 0, size, size));
+        map_sprite.setPosition(i * size, j * size);                       ////////////
+        window1.draw(map_sprite);
+      }
+    window1.draw(HERO_SPRITE);
+    window1.display();
+  }
 }
