@@ -45,12 +45,13 @@ class Fazer{
     x += stepX * time;
     y += stepY * time;
     speed = 0;
-    sprite.setPosition(x, y+280);
+    sprite.setPosition(x, y+365);
   }
 };
 
 int main{
-  Fazer m("Текстурка марио", 0, 0, 64, 85);
+  Fazer m("Текстурка марио", 64, 85, 0, 0);
+  m.sprite.setScale(0.8, 0.5);  
   int height = 17, width = 240;
   String map[height] = {
 "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss";,
@@ -73,7 +74,7 @@ int main{
   Image icon;
   icon.loadFromFile("путь к фавикону");
   window.setIcon("разрешение, фавикона", icon.getPixelsPtr());
-  int size = 32;
+  const int size = 32;
   /*Image hero_image;
   hero_image.loafFromFile("хироэмаге ");
   hero_image.createMaskFromColor(Color(255, 255, 255));
@@ -95,7 +96,7 @@ int main{
     float time = clock.getElapsedTime().asMicroseconds();
     clock.restart();
     time = time / 1000;
-    Event  event;
+    Event event;
     while(window1.pollEvent(event)){
       if (event.type == Event::Closed)
         window1.close();
@@ -121,6 +122,7 @@ int main{
       HERO_SPRITE.setTextureRext(intrect(418, 0, 85, 85));
     }*/
     if(Keyboard::isKeyPressed(Keyboard::Right)){
+    m.sprite.setScale(0.8, 0.5);  
     m.move = 0;
     m.speed = 0,2;
     nowFrame += 0.01 * time;               // nowFrame = nowFrame + (0,001 * time)
@@ -143,7 +145,7 @@ int main{
     nowFrame += 0.01 * time;               // nowFrame = nowFrame + (0,001 * time)
       if(nowFrame > 4)
         nowFrame -= 4;
-      m.sptire.setTextureRect(IntRect(418, 0, 80, 85));
+      m.sptire.setTextureRect(IntRect(418, 0, 80, 85));             ///// Все нав фрейм на фрейм марио
     }
     m.moveT(time);
     window1.clear();
